@@ -28,6 +28,7 @@ CSR.exe
 |-----------|---------:|------:|--------|---------------:|:------:|
 | csr_test_01.txt | 5 | 6 | CSR Representation | 4218 μs | Pass |
 | csr_test_02.txt | 9 | 12 | CSR Representation | 5637 μs | Pass |
+| csr_test_03.txt | 100 | 99 | CSR Representation | 1191.77 μs | Pass |
 
 ---
 

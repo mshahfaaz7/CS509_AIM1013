@@ -3,10 +3,11 @@
 #include <vector>
 #include <string>
 #include <chrono>
+
 #include "csr.h"
 
 using namespace std;
-using namespace std::chrono;
+using namespace chrono;
 
 int main()
 {
@@ -22,9 +23,15 @@ int main()
 
         ifstream fin(filename);
 
+        // If running from the common wrapper, try the repository path
         if (!fin)
         {
-            cout << "Error: Cannot open input file.\n";
+            fin.open("Assignment_01/CSR/" + filename);
+        }
+
+        if (!fin)
+        {
+            cout << "\nError: Cannot open input file.\n";
             continue;
         }
 
@@ -62,6 +69,7 @@ int main()
         vector<int> col_idx;
         vector<int> values;
 
+        // Conversion is outside the timed region
         convertToCSR(adjList, row_ptr, col_idx, values);
 
         auto start = high_resolution_clock::now();
@@ -70,9 +78,11 @@ int main()
 
         auto stop = high_resolution_clock::now();
 
-        auto duration = duration_cast<microseconds>(stop - start);
+        double execTime =
+            duration<double, milli>(stop - start).count();
 
-        cout << "\nExecution Time: " << duration.count() << " microseconds\n";
+        cout << "\nExecution Time : "
+             << execTime << " ms\n";
     }
 
     return 0;

@@ -13,6 +13,12 @@ void runTest(string fileName)
 {
     ifstream fin(fileName);
 
+    // If launched from wrapper, try repository path
+    if (!fin)
+    {
+        fin.open("Assignment_01/gemm/" + fileName);
+    }
+
     if (!fin)
     {
         cout << "\nCannot open " << fileName << endl;
@@ -39,38 +45,34 @@ void runTest(string fileName)
 
     fin.close();
 
-    auto start1 = high_resolution_clock::now();
-
+    auto start = high_resolution_clock::now();
     Matrix simple = gemmSimple(A, B, M, K, N);
+    auto stop = high_resolution_clock::now();
 
-    auto stop1 = high_resolution_clock::now();
+    double simpleTime =
+        duration<double, milli>(stop - start).count();
 
-    double timeSimple =
-        duration<double, milli>(stop1 - start1).count();
-
-    auto start2 = high_resolution_clock::now();
-
+    start = high_resolution_clock::now();
     Matrix block = gemmBlocking(A, B, M, K, N, 32);
+    stop = high_resolution_clock::now();
 
-    auto stop2 = high_resolution_clock::now();
-
-    double timeBlock =
-        duration<double, milli>(stop2 - start2).count();
+    double blockTime =
+        duration<double, milli>(stop - start).count();
 
     cout << "\n=====================================\n";
     cout << "Input File : " << fileName << endl;
 
     cout << "\nAlgorithm : GEMM Simple\n";
-cout << "Matrix Size : " << M << " x " << N << endl;
-cout << "Execution Time : "
-     << fixed << setprecision(6)
-     << timeSimple << " ms\n";
+    cout << "Matrix Size : " << M << " x " << N << endl;
+    cout << "Execution Time : "
+         << fixed << setprecision(6)
+         << simpleTime << " ms\n";
 
-cout << "\nAlgorithm : GEMM Blocking\n";
-cout << "Matrix Size : " << M << " x " << N << endl;
-cout << "Execution Time : "
-     << fixed << setprecision(6)
-     << timeBlock << " ms\n";
+    cout << "\nAlgorithm : GEMM Blocking\n";
+    cout << "Matrix Size : " << M << " x " << N << endl;
+    cout << "Execution Time : "
+         << fixed << setprecision(6)
+         << blockTime << " ms\n";
 
     cout << "=====================================\n";
 }

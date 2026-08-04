@@ -1,0 +1,90 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+void assignment01Menu()
+{
+    int choice;
+
+    while (true)
+    {
+        cout << "\n========== Assignment 01 ==========\n";
+        cout << "1. GEMM\n";
+        cout << "2. CSR\n";
+        cout << "0. Back\n";
+
+        cout << "\nEnter Choice : ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+        {
+#ifdef _WIN32
+            int status = system("Assignment_01\\gemm\\gemm.exe");
+#else
+            int status = system("./Assignment_01/gemm/gemm");
+#endif
+
+            if (status != 0)
+                cout << "\nUnable to launch GEMM.\n";
+
+            break;
+        }
+
+        case 2:
+        {
+#ifdef _WIN32
+            int status = system("Assignment_01\\CSR\\csr.exe");
+#else
+            int status = system("./Assignment_01/CSR/csr");
+#endif
+
+            if (status != 0)
+                cout << "\nUnable to launch CSR.\n";
+
+            break;
+        }
+
+        case 0:
+            return;
+
+        default:
+            cout << "\nInvalid Choice.\n";
+        }
+    }
+}
+
+int main()
+{
+    int choice;
+
+    while (true)
+    {
+        cout << "\n=========================================\n";
+        cout << "      CS509 Laboratory Common Wrapper\n";
+        cout << "=========================================\n";
+        cout << "1. Assignment 01\n";
+        cout << "0. Exit\n";
+
+        cout << "\nEnter Choice : ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            assignment01Menu();
+            break;
+
+        case 0:
+            cout << "\nExiting...\n";
+            return 0;
+
+        default:
+            cout << "\nInvalid Choice.\n";
+        }
+    }
+
+    return 0;
+}
