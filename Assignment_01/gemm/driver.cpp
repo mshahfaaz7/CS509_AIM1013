@@ -61,34 +61,16 @@ void runTest(string fileName)
     cout << "Input File : " << fileName << endl;
 
     cout << "\nAlgorithm : GEMM Simple\n";
-    cout << "Result Matrix\n";
+cout << "Matrix Size : " << M << " x " << N << endl;
+cout << "Execution Time : "
+     << fixed << setprecision(6)
+     << timeSimple << " ms\n";
 
-    for (int i = 0; i < M; i++)
-    {
-        for (int j = 0; j < N; j++)
-            cout << simple[i][j] << " ";
-
-        cout << endl;
-    }
-
-    cout << "Execution Time : "
-         << fixed << setprecision(6)
-         << timeSimple << " ms\n";
-
-    cout << "\nAlgorithm : GEMM Blocking\n";
-    cout << "Result Matrix\n";
-
-    for (int i = 0; i < M; i++)
-    {
-        for (int j = 0; j < N; j++)
-            cout << block[i][j] << " ";
-
-        cout << endl;
-    }
-
-    cout << "Execution Time : "
-         << fixed << setprecision(6)
-         << timeBlock << " ms\n";
+cout << "\nAlgorithm : GEMM Blocking\n";
+cout << "Matrix Size : " << M << " x " << N << endl;
+cout << "Execution Time : "
+     << fixed << setprecision(6)
+     << timeBlock << " ms\n";
 
     cout << "=====================================\n";
 }
@@ -104,7 +86,8 @@ int main()
         cout << "2. Run gemm_test_02.txt\n";
         cout << "3. Run gemm_test_03.txt\n";
         cout << "4. Run gemm_test_04.txt\n";
-        cout << "5. Run All Test Files\n";
+        cout << "5. Run gemm_test_05.txt\n";
+        cout << "6. Run All Test Files\n";
         cout << "0. Exit\n";
 
         cout << "\nEnter Choice : ";
@@ -129,10 +112,15 @@ int main()
             break;
 
         case 5:
+            runTest("gemm_test_05.txt");
+            break;
+
+        case 6:
             runTest("gemm_test_01.txt");
             runTest("gemm_test_02.txt");
             runTest("gemm_test_03.txt");
             runTest("gemm_test_04.txt");
+            runTest("gemm_test_05.txt");
             break;
 
         case 0:
