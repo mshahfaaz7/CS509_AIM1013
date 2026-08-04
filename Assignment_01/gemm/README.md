@@ -93,9 +93,9 @@ Where
 
 For every test case the program prints
 
-- Result Matrix (Simple GEMM)
+- Result Matrix size (Simple GEMM)
 - Execution Time
-- Result Matrix (Blocking GEMM)
+- Result Matrix size (Blocking GEMM)
 - Execution Time
 
 ---
@@ -234,11 +234,12 @@ O(M × N)
 
 | Test File | Input Matrix Size | Output Matrix Size | Simple GEMM Time (ms) | Blocking GEMM Time (ms) | Block Size | Status |
 |-----------|-------------------|--------------------|----------------------:|------------------------:|-----------:|:------:|
-| gemm_test_01.txt | 4 × 5 and 5 × 4 | 4 × 4 | 0.012000 | 0.008700 | 32 | Pass |
-| gemm_test_02.txt | 200 × 400 and 400 × 300 | 200 × 300 | 378.914300 | 391.919700 | 32 | Pass |
-| gemm_test_03.txt | 40 × 50 and 50 × 30 | 40 × 30 | 3.111400 | 3.138900 | 32 | Pass |
-| gemm_test_04.txt | 400 × 500 and 500 × 600 | 400 × 600 | 8934.631700 | 8943.672900 | 32 | Pass |
-| gemm_test_05.txt | 30 × 30 and 30 × 30 | 30 × 30 | 2.195900 | 2.174300 | 32 | Pass |
+| gemm_test_01.txt | 4 × 5 and 5 × 4 | 4 × 4 | 0.059800 | 0.016800 | 32 | Pass |
+| gemm_test_02.txt | 200 × 400 and 400 × 300 | 200 × 300 | 203.262900 | 175.405500 | 32 | Pass |
+| gemm_test_03.txt | 40 × 50 and 50 × 30 | 40 × 30 | 2.017000 | 2.061900 | 32 | Pass |
+| gemm_test_04.txt | 400 × 500 and 500 × 600 | 400 × 600 | 4673.084700 | 4046.294700 | 32 | Pass |
+| gemm_test_05.txt | 30 × 30 and 30 × 30 | 30 × 30 | 0.979400 | 0.827000 | 32 | Pass |
+
 
 
 
