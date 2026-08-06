@@ -20,38 +20,26 @@ void assignment01Menu()
         switch (choice)
         {
         case 1:
-        {
 #ifdef _WIN32
-            int status = system("Assignment_01\\gemm\\gemm.exe");
+            system("cd ..\\Assignment_01\\gemm && gemm.exe");
 #else
-            int status = system("./Assignment_01/gemm/gemm");
+            system("cd ../Assignment_01/gemm && ./gemm");
 #endif
-
-            if (status != 0)
-                cout << "\nUnable to launch GEMM.\n";
-
             break;
-        }
 
         case 2:
-        {
 #ifdef _WIN32
-            int status = system("Assignment_01\\CSR\\csr.exe");
+            system("cd ..\\Assignment_01\\CSR && CSR.exe");
 #else
-            int status = system("./Assignment_01/CSR/csr");
+            system("cd ../Assignment_01/CSR && ./CSR");
 #endif
-
-            if (status != 0)
-                cout << "\nUnable to launch CSR.\n";
-
             break;
-        }
 
         case 0:
             return;
 
         default:
-            cout << "\nInvalid Choice.\n";
+            cout << "Invalid Choice\n";
         }
     }
 }
@@ -78,13 +66,10 @@ int main()
             break;
 
         case 0:
-            cout << "\nExiting...\n";
             return 0;
 
         default:
-            cout << "\nInvalid Choice.\n";
+            cout << "Invalid Choice\n";
         }
     }
-
-    return 0;
 }
