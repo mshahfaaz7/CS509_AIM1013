@@ -20,8 +20,8 @@ void convertToCSR(
     {
         for (const auto &edge : adjList[i])
         {
-            col_idx.push_back(edge.first);   // Destination vertex
-            values.push_back(edge.second);   // Edge weight
+            col_idx.push_back(edge.first);   
+            values.push_back(edge.second);   
         }
 
         row_ptr.push_back(col_idx.size());

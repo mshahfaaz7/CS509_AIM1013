@@ -23,7 +23,7 @@ int main()
 
         ifstream fin(filename);
 
-        // If running from the common wrapper, try the repository path
+        
         if (!fin)
         {
             fin.open("Assignment_01/CSR/" + filename);
@@ -38,6 +38,8 @@ int main()
         int V, E;
         fin >> V >> E;
 
+        cout << "V = " << V << " E = " << E << endl;
+
         vector<vector<pair<int, int>>> adjList(V);
 
         for (int i = 0; i < V; i++)
@@ -45,11 +47,34 @@ int main()
             int vertex, degree;
             fin >> vertex >> degree;
 
+            cout << "Vertex = " << vertex
+                << " Degree = " << degree << endl;
+
+            if(vertex < 0 || vertex >= V)
+            {
+                cout << "ERROR: Invalid vertex " << vertex << endl;
+                return 0;
+            }
+
             for (int j = 0; j < degree; j++)
             {
-                int neighbour;
-                fin >> neighbour;
-                adjList[vertex].push_back({neighbour, 1});
+                int neighbour, weight;
+                fin >> neighbour >> weight;
+
+                cout << "   Edge : "
+                    << vertex << " -> "
+                    << neighbour
+                    << " Weight = "
+                    << weight << endl;
+
+                if(neighbour < 0 || neighbour >= V)
+                {
+                    cout << "ERROR: Invalid neighbour "
+                        << neighbour << endl;
+                    return 0;
+                }
+
+                adjList[vertex].push_back({neighbour, weight});
             }
         }
 
@@ -69,7 +94,7 @@ int main()
         vector<int> col_idx;
         vector<int> values;
 
-        // Conversion is outside the timed region
+        
         convertToCSR(adjList, row_ptr, col_idx, values);
 
         auto start = high_resolution_clock::now();
