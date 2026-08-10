@@ -29,11 +29,11 @@ Bellman-Ford uses the CSR conversion from Assignment 1. The CSR conversion is pr
 | Bellman-Ford | `bf_10000.txt` | 10,000 | 30,000 | 0 | Yes | Negative-cycle detection | Negative cycle detected | 10,348 ms | Pass |
 | Bellman-Ford | `bf_50000.txt` | 50,000 | 150,000 | 0 | Yes | Negative-cycle detection | Negative cycle detected | 252,197 ms | Pass |
 | Bellman-Ford | `bf_100000.txt` | 100,000 | 300,000 | 0 | Yes | Negative-cycle detection | Negative cycle detected | 1,579,950 ms | Pass |
-| Floyd-Warshall | `fw_10.txt` | 10 | See input | N/A | No | Distance matrix | Distance matrix; no negative cycle | 0.0138 ms | Pass |
-| Floyd-Warshall | `fw_100.txt` | 100 | See input | N/A | No | Distance matrix | Distance matrix; no negative cycle | 5.0389 ms | Pass |
-| Floyd-Warshall | `fw_500.txt` | 500 | See input | N/A | No | Distance matrix | Distance matrix; no negative cycle | 620.302 ms | Pass |
-| Floyd-Warshall | `fw_1000.txt` | 1,000 | See input | N/A | No | Distance matrix | Distance matrix; no negative cycle | 4,904.79 ms | Pass |
-| Floyd-Warshall | `fw_2000.txt` | 2,000 | See input | N/A | No | Distance matrix | Distance matrix; no negative cycle | 42,367.3 ms | Pass |
+| Floyd-Warshall | `fw_10.txt` | 10 | 24 | N/A | No | Distance matrix | Distance matrix; no negative cycle | 0.0138 ms | Pass |
+| Floyd-Warshall | `fw_100.txt` | 100 | 294 | N/A | No | Distance matrix | Distance matrix; no negative cycle | 5.0389 ms | Pass |
+| Floyd-Warshall | `fw_500.txt` | 500 | 1,494 | N/A | No | Distance matrix | Distance matrix; no negative cycle | 620.302 ms | Pass |
+| Floyd-Warshall | `fw_1000.txt` | 1,000 | 2,994 | N/A | No | Distance matrix | Distance matrix; no negative cycle | 4,904.79 ms | Pass |
+| Floyd-Warshall | `fw_2000.txt` | 2,000 | 5,994 | N/A | No | Distance matrix | Distance matrix; no negative cycle | 42,367.3 ms | Pass |
 
 ## Required Test Sizes
 
