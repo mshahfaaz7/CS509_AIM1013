@@ -16,4 +16,4 @@ Vertex	Distance
 
 Negative cycle : none
 
-Execution Time : 0.0034 ms
+Execution Time : 0.0084 ms
