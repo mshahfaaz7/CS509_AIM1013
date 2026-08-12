@@ -11,6 +11,35 @@ Implement:
 - **Bellman-Ford:** Single-source shortest path on weighted directed graphs.
 - **Floyd-Warshall:** All-pairs shortest path on a weighted adjacency matrix.
 
+## Repository Structure
+
+```text
+CS509_AIM1013/
+│
+├── Assignment_01/
+│
+├── Assignment_02/
+│   │
+│   ├── bellmanford/
+│   │   ├── input/
+│   │   ├── output/
+│   │   ├── bf.cpp
+│   │   ├── bf.h
+│   │   ├── bf.exe
+│   │   └── driver.cpp
+│   │
+│   ├── Floyd_warshall/
+│   │   ├── input/
+│   │   ├── output/
+│   │   ├── fw.cpp
+│   │   ├── fw.h
+│   │   ├── fw.exe
+│   │   └── driver.cpp
+│   │
+│   └── README.md
+│
+└── common_wrapper/
+
 ### Complexity
 
 | Algorithm | Time Complexity | Space Complexity |
