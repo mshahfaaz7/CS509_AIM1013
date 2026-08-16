@@ -10001,4 +10001,4 @@ MST edges:
 602 6184 100
 
 Total MST weight: 203230
-Execution time: 17.6408 ms
+Execution time: 14.5908 ms

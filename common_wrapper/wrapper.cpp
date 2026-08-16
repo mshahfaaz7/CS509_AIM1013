@@ -91,6 +91,50 @@ void assignment02Menu()
 }
 
 
+void assignment03Menu()
+{
+    int choice;
+
+    while (true)
+    {
+        cout << "\n========== Assignment 03 ==========\n";
+        cout << "1. Prim's\n";
+        cout << "2. Kruskal\n";
+        cout << "0. Back\n";
+
+        cout << "\nEnter Choice : ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+
+#ifdef _WIN32
+            system("cd ..\\Assignment_03 && prims.exe");
+#else
+            system("cd ../Assignment_03 && ./prims");
+#endif
+            break;
+
+        case 2:
+
+#ifdef _WIN32
+            system("cd ..\\Assignment_03 && krus.exe");
+#else
+            system("cd ../Assignment_03 && ./krus");
+#endif
+            break;
+
+        case 0:
+            return;
+
+        default:
+            cout << "Invalid Choice\n";
+        }
+    }
+}
+
+
 int main()
 {
     int choice;
@@ -102,6 +146,7 @@ int main()
         cout << "=========================================\n";
         cout << "1. Assignment 01\n";
         cout << "2. Assignment 02\n";
+        cout << "3. Assignment 03\n";
         cout << "0. Exit\n";
 
         cout << "\nEnter Choice : ";
@@ -115,6 +160,10 @@ int main()
 
         case 2:
             assignment02Menu();
+            break;
+
+        case 3:
+            assignment03Menu();
             break;
 
         case 0:
