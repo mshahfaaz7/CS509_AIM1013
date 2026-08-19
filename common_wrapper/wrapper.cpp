@@ -94,7 +94,6 @@ void assignment02Menu()
 void assignment03Menu()
 {
     int choice;
-
     while (true)
     {
         cout << "\n========== Assignment 03 ==========\n";
