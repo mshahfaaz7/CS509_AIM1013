@@ -23,7 +23,6 @@ int main()
 
         ifstream fin(filename);
 
-        
         if (!fin)
         {
             fin.open("Assignment_01/CSR/" + filename);
@@ -40,7 +39,9 @@ int main()
 
         cout << "V = " << V << " E = " << E << endl;
 
-        vector<vector<pair<int, int>>> adjList(V);
+        // Unweighted graph:
+        // Only store neighbour, no weight
+        vector<vector<int>> adjList(V);
 
         for (int i = 0; i < V; i++)
         {
@@ -48,9 +49,9 @@ int main()
             fin >> vertex >> degree;
 
             cout << "Vertex = " << vertex
-                << " Degree = " << degree << endl;
+                 << " Degree = " << degree << endl;
 
-            if(vertex < 0 || vertex >= V)
+            if (vertex < 0 || vertex >= V)
             {
                 cout << "ERROR: Invalid vertex " << vertex << endl;
                 return 0;
@@ -58,33 +59,23 @@ int main()
 
             for (int j = 0; j < degree; j++)
             {
-                int neighbour, weight;
-                fin >> neighbour >> weight;
+                int neighbour;
+                fin >> neighbour;
 
                 cout << "   Edge : "
-                    << vertex << " -> "
-                    << neighbour
-                    << " Weight = "
-                    << weight << endl;
+                     << vertex << " -> "
+                     << neighbour << endl;
 
-                if(neighbour < 0 || neighbour >= V)
+                if (neighbour < 0 || neighbour >= V)
                 {
                     cout << "ERROR: Invalid neighbour "
-                        << neighbour << endl;
+                         << neighbour << endl;
                     return 0;
                 }
 
-                adjList[vertex].push_back({neighbour, weight});
-            }
-        }
-
-        string temp;
-        if (fin >> temp)
-        {
-            if (temp == "SOURCE")
-            {
-                int source;
-                fin >> source;
+                // Add edge in both directions
+                adjList[vertex].push_back(neighbour);
+                adjList[neighbour].push_back(vertex);
             }
         }
 
@@ -92,14 +83,12 @@ int main()
 
         vector<int> row_ptr;
         vector<int> col_idx;
-        vector<int> values;
 
-        
-        convertToCSR(adjList, row_ptr, col_idx, values);
+        convertToCSR(adjList, row_ptr, col_idx);
 
         auto start = high_resolution_clock::now();
 
-        printCSR(row_ptr, col_idx, values);
+        printCSR(row_ptr, col_idx);
 
         auto stop = high_resolution_clock::now();
 

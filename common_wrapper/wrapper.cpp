@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 void assignment01Menu()
 {
     int choice;
@@ -94,6 +95,7 @@ void assignment02Menu()
 void assignment03Menu()
 {
     int choice;
+
     while (true)
     {
         cout << "\n========== Assignment 03 ==========\n";
@@ -134,6 +136,50 @@ void assignment03Menu()
 }
 
 
+void assignment04Menu()
+{
+    int choice;
+
+    while (true)
+    {
+        cout << "\n========== Assignment 04 ==========\n";
+        cout << "1. PageRank\n";
+        cout << "2. Vertex Coloring\n";
+        cout << "0. Back\n";
+
+        cout << "\nEnter Choice : ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+
+#ifdef _WIN32
+            system("cd ..\\Assignment_04\\pagerank && pagerank.exe");
+#else
+            system("cd ../Assignment_04/pagerank && ./pagerank");
+#endif
+            break;
+
+        case 2:
+
+#ifdef _WIN32
+            system("cd ..\\Assignment_04\\vertex_colouring && vc.exe");
+#else
+            system("cd ../Assignment_04/vertex_colouring && ./vc");
+#endif
+            break;
+
+        case 0:
+            return;
+
+        default:
+            cout << "Invalid Choice\n";
+        }
+    }
+}
+
+
 int main()
 {
     int choice;
@@ -146,6 +192,7 @@ int main()
         cout << "1. Assignment 01\n";
         cout << "2. Assignment 02\n";
         cout << "3. Assignment 03\n";
+        cout << "4. Assignment 04\n";
         cout << "0. Exit\n";
 
         cout << "\nEnter Choice : ";
@@ -163,6 +210,10 @@ int main()
 
         case 3:
             assignment03Menu();
+            break;
+
+        case 4:
+            assignment04Menu();
             break;
 
         case 0:
