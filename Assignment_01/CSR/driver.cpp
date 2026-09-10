@@ -1,102 +1,145 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <utility>
 #include <string>
-#include <chrono>
 
 #include "csr.h"
 
 using namespace std;
-using namespace chrono;
+
+void readGraph(
+    const string& filename,
+    int type,
+    vector<vector<pair<int, double>>>& adjList,
+    int& V,
+    int& E)
+{
+    ifstream fin(filename);
+
+    if (!fin)
+    {
+        cout << "Error: Cannot open input file.\n";
+        return;
+    }
+
+    fin >> V >> E;
+
+    adjList.resize(V);
+
+    bool weighted = (type == 3 || type == 4);
+    bool undirected = (type == 2 || type == 4);
+
+    for (int i = 0; i < V; i++)
+    {
+        int vertex, degree;
+        fin >> vertex >> degree;
+
+        if (vertex < 0 || vertex >= V)
+        {
+            cout << "Error: Invalid vertex " << vertex << endl;
+            return;
+        }
+
+        for (int j = 0; j < degree; j++)
+        {
+            int neighbour;
+            double weight = 1.0;
+
+            fin >> neighbour;
+
+            if (weighted)
+                fin >> weight;
+
+            if (neighbour < 0 || neighbour >= V)
+            {
+                cout << "Error: Invalid neighbour "
+                     << neighbour << endl;
+                return;
+            }
+
+            adjList[vertex].push_back({neighbour, weight});
+
+            if (undirected)
+            {
+                adjList[neighbour].push_back({vertex, weight});
+            }
+        }
+    }
+
+    fin.close();
+}
 
 int main()
 {
     while (true)
     {
-        string filename;
+        cout << "\n====================================\n";
+        cout << "          CSR Conversion\n";
+        cout << "====================================\n";
+        cout << "1. Unweighted Directed\n";
+        cout << "2. Unweighted Undirected\n";
+        cout << "3. Weighted Directed\n";
+        cout << "4. Weighted Undirected\n";
+        cout << "0. Exit\n";
 
-        cout << "\nEnter input file name (or 'exit' to quit): ";
-        cin >> filename;
+        int choice;
 
-        if (filename == "exit")
+        cout << "\nEnter Choice : ";
+        cin >> choice;
+
+        if (choice == 0)
             break;
 
-        ifstream fin(filename);
-
-        if (!fin)
+        if (choice < 1 || choice > 4)
         {
-            fin.open("Assignment_01/CSR/" + filename);
-        }
-
-        if (!fin)
-        {
-            cout << "\nError: Cannot open input file.\n";
+            cout << "Invalid Choice\n";
             continue;
         }
 
+        string filename;
+
+        cout << "Enter input file name : ";
+        cin >> filename;
+
+        vector<vector<pair<int, double>>> adjList;
+
         int V, E;
-        fin >> V >> E;
 
-        cout << "V = " << V << " E = " << E << endl;
+        readGraph(
+            filename,
+            choice,
+            adjList,
+            V,
+            E
+        );
 
-        // Unweighted graph:
-        // Only store neighbour, no weight
-        vector<vector<int>> adjList(V);
-
-        for (int i = 0; i < V; i++)
-        {
-            int vertex, degree;
-            fin >> vertex >> degree;
-
-            cout << "Vertex = " << vertex
-                 << " Degree = " << degree << endl;
-
-            if (vertex < 0 || vertex >= V)
-            {
-                cout << "ERROR: Invalid vertex " << vertex << endl;
-                return 0;
-            }
-
-            for (int j = 0; j < degree; j++)
-            {
-                int neighbour;
-                fin >> neighbour;
-
-                cout << "   Edge : "
-                     << vertex << " -> "
-                     << neighbour << endl;
-
-                if (neighbour < 0 || neighbour >= V)
-                {
-                    cout << "ERROR: Invalid neighbour "
-                         << neighbour << endl;
-                    return 0;
-                }
-
-                // Add edge in both directions
-                adjList[vertex].push_back(neighbour);
-                adjList[neighbour].push_back(vertex);
-            }
-        }
-
-        fin.close();
+        if (adjList.empty())
+            continue;
 
         vector<int> row_ptr;
         vector<int> col_idx;
+        vector<double> values;
 
-        convertToCSR(adjList, row_ptr, col_idx);
+        convertToCSR(
+            adjList,
+            row_ptr,
+            col_idx,
+            values
+        );
 
-        auto start = high_resolution_clock::now();
+        cout << "\n====================================\n";
+        cout << "              CSR\n";
+        cout << "====================================\n";
 
-        printCSR(row_ptr, col_idx);
+        cout << "\nVertices : " << V << endl;
+        cout << "Edges    : " << E << endl;
 
-        auto stop = high_resolution_clock::now();
-
-        double execTime =
-            duration<double, milli>(stop - start).count();
-
-        cout << "\nExecution Time : "
-             << execTime << " ms\n";
+        printCSR(
+            row_ptr,
+            col_idx,
+            values
+        );
     }
 
     return 0;
